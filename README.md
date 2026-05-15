@@ -1,4 +1,4 @@
-# FastAPI CSV Automation 🚀
+# FastAPI CSV Automation 
 
 A powerful FastAPI-based backend project for automating CSV processing, employee management, reporting, and scheduled data operations.
 
@@ -8,7 +8,7 @@ This project demonstrates practical backend development skills using FastAPI, Pa
 
 # 📌 Features
 
-## ✅ Employee Management APIs
+## Employee Management APIs
 - Create employees
 - Update employee records
 - Delete employees
@@ -18,7 +18,7 @@ This project demonstrates practical backend development skills using FastAPI, Pa
 
 ---
 
-## ✅ CSV Automation
+## CSV Automation
 - Upload CSV files
 - Process employee datasets
 - Remove duplicate records
@@ -28,7 +28,7 @@ This project demonstrates practical backend development skills using FastAPI, Pa
 
 ---
 
-## ✅ Reporting System
+## Reporting System
 - Salary analytics
 - Department-wise summaries
 - Auto-generated reports
@@ -36,7 +36,7 @@ This project demonstrates practical backend development skills using FastAPI, Pa
 
 ---
 
-## ✅ Scheduled Automation
+## Scheduled Automation
 - Automated validation
 - Automatic backups
 - Cleanup tasks
@@ -44,7 +44,7 @@ This project demonstrates practical backend development skills using FastAPI, Pa
 
 ---
 
-# 🛠️ Tech Stack
+#  Tech Stack
 
 | Technology | Usage |
 |------------|------|
@@ -57,7 +57,7 @@ This project demonstrates practical backend development skills using FastAPI, Pa
 
 ---
 
-# 📂 Project Structure
+# Project Structure
 
 ```bash
 fastapi-csv-automation/
@@ -78,9 +78,9 @@ fastapi-csv-automation/
 
 ---
 
-# ⚙️ Installation
+#  Installation
 
-## 1️⃣ Clone Repository
+## 1️ Clone Repository
 
 ```bash
 git clone https://github.com/Shrikant-kankuntla/fastapi-csv-automation.git
@@ -89,7 +89,7 @@ cd fastapi-csv-automation
 
 ---
 
-## 2️⃣ Create Virtual Environment
+## 2️ Create Virtual Environment
 
 ```bash
 python -m venv venv
@@ -97,7 +97,7 @@ python -m venv venv
 
 ---
 
-## 3️⃣ Activate Virtual Environment
+## 3️ Activate Virtual Environment
 
 ### Windows
 
@@ -113,7 +113,7 @@ source venv/bin/activate
 
 ---
 
-## 4️⃣ Install Dependencies
+## 4️ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -127,7 +127,7 @@ pip install fastapi uvicorn pandas schedule python-multipart
 
 ---
 
-# ▶️ Running the Application
+#  Running the Application
 
 Start the FastAPI server:
 
@@ -143,7 +143,7 @@ http://127.0.0.1:8000
 
 ---
 
-# 📖 API Documentation
+#  API Documentation
 
 FastAPI automatically provides Swagger UI.
 
@@ -161,7 +161,7 @@ http://127.0.0.1:8000/redoc
 
 ---
 
-# 📡 API Endpoints
+#  API Endpoints
 
 # Base Endpoint
 
@@ -171,7 +171,7 @@ Check API health status.
 
 ---
 
-# 👨‍💼 Employee APIs
+#  Employee APIs
 
 ## Create Employee
 
@@ -227,7 +227,7 @@ Check API health status.
 
 ---
 
-# 📂 CSV APIs
+#  CSV APIs
 
 ## Upload CSV File
 
@@ -250,7 +250,7 @@ Download processed employee data.
 
 ---
 
-# 📊 Salary Analytics
+#  Salary Analytics
 
 ## GET `/stats/salary`
 
@@ -284,7 +284,7 @@ automation.py
 
 ---
 
-# ⏰ Run Automation Script
+#  Run Automation Script
 
 ```bash
 python automation.py
@@ -292,7 +292,7 @@ python automation.py
 
 ---
 
-# 📁 Sample CSV Format
+#  Sample CSV Format
 
 ```csv
 id,name,department,salary,email
@@ -316,21 +316,8 @@ This project demonstrates:
 - API Documentation
 - Clean Backend Architecture
 
----
 
-# 🚀 Future Improvements
-
-- PostgreSQL/MySQL integration
-- JWT Authentication
-- Docker deployment
-- Async background workers
-- Email notifications
-- Frontend dashboard
-- Cloud deployment
-
----
-
-# 🧪 Example Run
+#  Example Run
 
 ```bash
 uvicorn main:app --reload
@@ -341,28 +328,3 @@ Then open:
 ```bash
 http://127.0.0.1:8000/docs
 ```
-
----
-
-# 🤝 Contributing
-
-Contributions are welcome.
-
-Fork the repository and submit a pull request.
-
-
-
-# 👨‍💻 Author
-
-## Shrikant Kankuntla
-
-Backend Developer | FastAPI Enthusiast | Automation Projects
-
-GitHub Repository:
-
-```bash
-git@github.com:Shrikant-kankuntla/fastapi-csv-automation.git
-```
-
----
-⭐ If you found this project useful, consider giving it a star.
