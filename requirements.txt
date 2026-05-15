@@ -1,0 +1,7 @@
+# requirements.txt
+fastapi
+uvicorn
+pandas
+python-multipart
+pydantic
+schedule
