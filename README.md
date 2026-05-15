@@ -263,7 +263,7 @@ Returns:
 
 ---
 
-# 🤖 Automation Tasks
+#  Automation Tasks
 
 Automation logic is implemented in:
 
@@ -302,7 +302,7 @@ id,name,department,salary,email
 
 ---
 
-# 🔍 Key Learning Concepts
+#  Key Learning Concepts
 
 This project demonstrates:
 
