@@ -10,7 +10,7 @@ from csv_utils import (
     get_salary_stats,
 )
 
-REPORT_DIR = "reports"
+REPORT_DIR = "reports" 
 
 
 def ensure_report_dir():
