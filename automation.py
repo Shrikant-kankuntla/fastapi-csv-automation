@@ -13,12 +13,10 @@ from csv_utils import (
 REPORT_DIR = "reports"
 
 
-# ---------- Ensure reports directory ----------
 def ensure_report_dir():
     os.makedirs(REPORT_DIR, exist_ok=True)
 
 
-# ---------- TASK 1: Daily Report Generation ----------
 def generate_daily_report():
     ensure_report_dir()
     df = read_csv()
@@ -26,7 +24,6 @@ def generate_daily_report():
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     report_path = os.path.join(REPORT_DIR, f"report_{timestamp}.csv")
 
-    # Generate summary
     summary = df.groupby("department").agg(
         employee_count=("id", "count"),
         avg_salary=("salary", "mean"),
@@ -36,11 +33,10 @@ def generate_daily_report():
     ).reset_index()
 
     summary.to_csv(report_path, index=False)
-    print(f"📊 Report generated: {report_path}")
+    print(f" Report generated: {report_path}")
     return report_path
 
 
-# ---------- TASK 2: Data Backup ----------
 def backup_data():
     ensure_report_dir()
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -52,36 +48,31 @@ def backup_data():
     return backup_path
 
 
-# ---------- TASK 3: Data Validation ----------
 def validate_data():
     df = read_csv()
     issues = []
 
-    # Check for duplicates
     duplicates = df[df.duplicated(subset=["email"])]
     if not duplicates.empty:
         issues.append(f"Found {len(duplicates)} duplicate emails")
 
-    # Check for invalid salaries
     invalid_salary = df[df["salary"] < 0]
     if not invalid_salary.empty:
         issues.append(f"Found {len(invalid_salary)} negative salaries")
 
-    # Check for missing values
     missing = df.isnull().sum()
     for col, count in missing.items():
         if count > 0:
             issues.append(f"Column '{col}' has {count} missing values")
 
     if not issues:
-        print("✅ Data validation passed — no issues found")
+        print(" Data validation passed — no issues found")
     else:
-        print(f"⚠️ Data validation issues: {issues}")
+        print(f" Data validation issues: {issues}")
 
     return issues if issues else ["All good!"]
 
 
-# ---------- TASK 4: Auto-cleanup old reports ----------
 def cleanup_old_reports(days: int = 7):
     ensure_report_dir()
     now = datetime.datetime.now()
@@ -94,11 +85,10 @@ def cleanup_old_reports(days: int = 7):
             os.remove(filepath)
             cleaned += 1
 
-    print(f"🧹 Cleaned {cleaned} old report(s)")
+    print(f" Cleaned {cleaned} old report(s)")
     return cleaned
 
 
-# ---------- Manual trigger (called from API) ----------
 def run_automation_task():
     report = generate_daily_report()
     backup = backup_data()
@@ -113,7 +103,6 @@ def run_automation_task():
     }
 
 
-# ---------- SCHEDULER (runs in background) ----------
 def run_scheduler():
     # Schedule tasks
     schedule.every(1).hours.do(generate_daily_report)
@@ -121,14 +110,13 @@ def run_scheduler():
     schedule.every(30).minutes.do(validate_data)
     schedule.every().monday.do(lambda: cleanup_old_reports(days=7))
 
-    print("⏰ Scheduler started...")
+    print(" Scheduler started...")
 
     while True:
         schedule.run_pending()
-        time.sleep(60)  # check every minute
+        time.sleep(60)  
 
 
-# ---------- Start scheduler in a daemon thread ----------
 def start_scheduler():
     thread = threading.Thread(target=run_scheduler, daemon=True)
     thread.start()
