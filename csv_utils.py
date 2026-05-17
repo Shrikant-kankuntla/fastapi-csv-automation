@@ -8,7 +8,6 @@ INPUT_FILE = os.path.join(DATA_DIR, "input.csv")
 OUTPUT_FILE = os.path.join(DATA_DIR, "output.csv")
 
 
-# ---------- Ensure data directory exists ----------
 def ensure_data_dir():
     os.makedirs(DATA_DIR, exist_ok=True)
     if not os.path.exists(INPUT_FILE):
@@ -16,18 +15,15 @@ def ensure_data_dir():
         df.to_csv(INPUT_FILE, index=False)
 
 
-# ---------- Read all records ----------
 def read_csv() -> pd.DataFrame:
     ensure_data_dir()
     return pd.read_csv(INPUT_FILE)
 
 
-# ---------- Write DataFrame to CSV ----------
 def write_csv(df: pd.DataFrame, path: str = INPUT_FILE):
     df.to_csv(path, index=False)
 
 
-# ---------- Get next ID ----------
 def get_next_id() -> int:
     df = read_csv()
     if df.empty:
@@ -35,7 +31,6 @@ def get_next_id() -> int:
     return int(df["id"].max()) + 1
 
 
-# ---------- CREATE ----------
 def add_employee(employee: Employee) -> dict:
     df = read_csv()
     new_id = get_next_id()
@@ -51,13 +46,11 @@ def add_employee(employee: Employee) -> dict:
     return new_row
 
 
-# ---------- READ ALL ----------
 def get_all_employees() -> List[dict]:
     df = read_csv()
     return df.to_dict(orient="records")
 
 
-# ---------- READ ONE ----------
 def get_employee_by_id(emp_id: int) -> Optional[dict]:
     df = read_csv()
     match = df[df["id"] == emp_id]
@@ -66,7 +59,6 @@ def get_employee_by_id(emp_id: int) -> Optional[dict]:
     return match.iloc[0].to_dict()
 
 
-# ---------- UPDATE ----------
 def update_employee(emp_id: int, updates: EmployeeUpdate) -> Optional[dict]:
     df = read_csv()
     idx = df.index[df["id"] == emp_id]
@@ -80,7 +72,6 @@ def update_employee(emp_id: int, updates: EmployeeUpdate) -> Optional[dict]:
     return df.loc[idx[0]].to_dict()
 
 
-# ---------- DELETE ----------
 def delete_employee(emp_id: int) -> bool:
     df = read_csv()
     idx = df.index[df["id"] == emp_id]
@@ -91,14 +82,12 @@ def delete_employee(emp_id: int) -> bool:
     return True
 
 
-# ---------- FILTER by department ----------
 def filter_by_department(dept: str) -> List[dict]:
     df = read_csv()
     filtered = df[df["department"].str.lower() == dept.lower()]
     return filtered.to_dict(orient="records")
 
 
-# ---------- STATISTICS ----------
 def get_salary_stats() -> dict:
     df = read_csv()
     if df.empty:
@@ -108,12 +97,10 @@ def get_salary_stats() -> dict:
     return stats
 
 
-# ---------- PROCESS uploaded CSV ----------
 def process_uploaded_csv(source_path: str, dest_path: str = OUTPUT_FILE) -> dict:
     """Read, clean, transform, and save a CSV file."""
     df = pd.read_csv(source_path)
 
-    # --- Data Cleaning ---
     df.drop_duplicates(inplace=True)
     df.dropna(subset=["name", "email"], inplace=True)
     df["salary"] = df["salary"].fillna(0)
@@ -121,11 +108,9 @@ def process_uploaded_csv(source_path: str, dest_path: str = OUTPUT_FILE) -> dict
     df["department"] = df["department"].str.strip().str.title()
     df["email"] = df["email"].str.strip().str.lower()
 
-    # --- Transformation: Add bonus column ---
     df["bonus"] = df["salary"] * 0.10
     df["total_compensation"] = df["salary"] + df["bonus"]
 
-    # --- Save ---
     write_csv(df, dest_path)
 
     return {
